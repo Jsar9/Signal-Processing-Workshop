@@ -1,0 +1,145 @@
+Charla introductoria	-------------------------------------------
+
+Anotarse en una hoja para el cambio de condicionales.
+
+TPs se presentan los viernes durante la teórica, nosotros los arrancamos, y en la clase práctica de los martes, se termina el tp, ya 
+trabajado y digerido. La idea es terminarlo acá para que nos pregunten cosas y chequeen que vamos avanzando.
+Martes es de asistencia obligatoria. La de los viernes no es obligatoria, no se toma asistencia, pero se recomienda ir.
+
+La idea de la materia es aprender a programar, es un taller de programación básicamente.
+
+Chequear el reglamento: 9 aprobados y al menos 6 en clase.
+
+Las entregas son individuales. 
+
+Ver si me quedo en los martes: si me cambio a los miércoles, enviar mail para avisar, porque marqué días martes 
+
+Vamos a programar en Python, con Jupyter Notebook (podemos usar collab). Necesitamos estructurar programas en una clase, por ejemplo
+Y vamos a utilizar librerías como: Numpy, Matplotlib, y demás que vamos a ir viendo a lo largo de la materia (Para leer imágenes, etc)
+La parte teórica, se basa en probabilidad, en tiempo continuo principalmente, algebra lineal.
+
+Todos los TPs se suben al campus como JN.
+
+-------------------------------------------
+
+Repaso de proba:
+
+Variables continuas principalmente. Nos vamos a encontrar con conceptos de ML, vamos a clasificar o predecir.
+
+Diferencia entre clasificación y predicción: La clasificación está asociada a un conjunto discreto, es decir "esta cosa que yo medí, como por ejemplo los pixeles de una imagen,
+me deberían dar un indicio de la clase: como por ejemplo, si algo es un objeto A o B" puedo tener múltiples clases. 
+Lo que quiero hacer es acertar:
+
+Supongamos una serie de frutas:
+Limones, manzanas y naranjas. Quiero clasificar una serie de frutas según su peso (o alguna otra cosa) y en base a eso, determinar que tipo de fruta es.
+
+Por ejemplo, podemos determinar a priori las probabilidades de cada uno, pero si asigno un peso a cada fruta, por ejemplo si me interesa detectar los limones principalmente, 
+ya no es tan fácil determinar.
+
+
+P(error) = 1- P(acierto)
+
+Antes maximizaba la probabilidad de Y
+Ahora debo maximizar la P(Y|X) -> En general, para clasificar quiero maximizar esto.
+
+-------------------------------------------
+
+Caso de predicción:
+Es lo mismo que para clasificar, pero Y es un valor continuo.
+
+Criterio de cuadrados mínimos:
+En tal caso, me conviene jugármela por la esperanza condicional?
+
+err = y_s - y
+
+J = E(err^2) -> La esperanza es el mejor predictor en términos del error cuadrático. 
+
+La esperanza, minimiza el error cuadrático (sin que nada sea condicional)
+
+queremos demostrar que esto se minimiza cuando C= media de Y :
+E((Y-C)^2) = E ((Y-mu + mu - C)^2) = var(y) + (mu - C) ^2 ---> El costo es básicamente una parábola. --> este concepto aparece en todos lados.
+
+Entonces, se concluye que la esperanza minimiza el error cuadrático.
+
+En el siguiente caso, cual es el mejor predictor? (Y_s = Y sombrero)
+
+Y_s | X
+
+Supongamos Y_s = g(x)
+
+J = E((Y_s - Y)^2)
+
+En este caso, calculo la esperanza:
+
+
+Quiero minimizar: integral[ (Y_s - S)^2   f_x(Y|X) ] dx dy
+
+Luego, lo que minimiza el error cuadrático es:
+
+Y_s = E(Y|X)
+
+El error con condición es menor que el error que cometo sin condición. Por eso uso este básicamente.
+
+
+Los primeros ejercicios de la guía, son para practicar Numpy.
+
+
+--------------------------------------------------------------------------------------
+
+Ejercicio 1.3.
+
+E(Y|X) ----> 
+
+
+f(y|x) = fxy / fx -----> x es una cte, porque ahora solo depende de X. Tengo que ver la conjunta, cuando x vale 0.5 y dividir por fx que lo que hace es normalizar, pero es una cte.
+
+
+entonces, termina siendo una recta vertical en 0.5, y esos valores divididos por fx
+
+
+Si quiero minimizar el error cuadrático: E(Y|X) -> esta curva, la curva de regresión, es el predictor óptimo, considerando como criterio el error mínimo cuadrático.
+
+
+Esa curva está a la mitad del soporte dibujado y es: g(x) = E(y|x) = (1+x^3) / 2 
+
+--------------------------------------------------------------------------------------
+
+Viernes vemos regresión lineal. 
+
+E(Y|X) es difícil de calcular, generalmente la conjunta no la conocemos, a veces podemos estimarla y con suerte. 
+Así que en la práctica, tomar la esperanza condicional es poco factible, solemos hacer algo más sencillo:
+
+
+Busco una expresión lineal:
+
+Y_s = g(x) = ax+b ------> Busco a y b para minimizar el error cuadrático medio.
+
+E((Y-Y_s)^2) = J(a,b)
+
+E((ax+b - Y)) = 0 -----> a muX + b = muY
+
+Vamos a suponer que las 2 tienen media 0, para simplificar cuentas:
+
+dJ/da = E[ (ax-y)x ] = a var(x) - cov(x,y) =0
+
+----> a = cov(x,y) / var(x)
+
+Esperamos que de una recta que mejor aproxime la curva que vimos antes en el medio del soporte, que es la E(Y|X).
+
+
+De esa forma tengo un modelo mucho más simple. Se usan no solo porque son más fáciles de calcular, sino que muchas veces es mejor trabajar con modelos simples que con modelos complejos.
+
+Si en vez de la funcion de probabilidad, nos dieran datos:
+
+¿Cómo encuentro el mejor predictor lineal? 
+Es un problema meramente algebraico, como la regresion lineal del excel.
+
+--------------------------------------------------------------------------------------
+
+Intro a NumPy
+
+Se pide explicación con expresiones matemáticas, etc
+
+
+
+
